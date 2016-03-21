@@ -15,7 +15,7 @@
    save_state="y"
    date_written="2016-03-14 22:02:06"
    requires="5.01"
-   version="1.1"
+   version="1.2"
    >
 
 </plugin>
@@ -541,6 +541,7 @@ Note("Total Stats: " ..totalStats)
 
 if totalDR == tonumber(GetVariable("enchantDRRequired")) and totalStats &gt;= tonumber(GetVariable("enchantStatRequired")) then
        Send("put " ..GetVariable("currentSRItarget").. " " ..GetVariable("EnchantedBag"))
+       Execute("resetEnchantVariables")
 else
        if GetVariable("enchantDHS") == 'drop' then
               Send("drop " ..GetVariable("currentSRItarget"))
@@ -549,6 +550,7 @@ else
        elseif  GetVariable("enchantDHS") == 'sell' then
               Send("sell " ..GetVariable("currentSRItarget"))
        end
+       Execute("resetEnchantVariables")
 end
 
 </send>
@@ -669,7 +671,6 @@ else
       local vEFActive = GetVariable("efSpellActive")
       local vEFCoolDown = GetVariable("efSpellCoolDown")
 
-
       if vEFActive == 'on' then
             SetVariable("currentSRItarget", vItem)
             Send("take " ..vItem.. " " ..GetVariable("unEnchantedBag"))
@@ -692,31 +693,31 @@ end</send>
   <variable name="enchantDexStatAmount">0</variable>
   <variable name="enchantIntStatAmount">0</variable>
   <variable name="enchantRawLuckStatAmount">0</variable>
-  <variable name="enchantDamRollStatAmount">10</variable>
+  <variable name="enchantDamRollStatAmount">0</variable>
   <variable name="enchantRawCompare">false</variable>
   <variable name="resHit">0</variable>
-  <variable name="currentSRItarget">91hook</variable>
-  <variable name="enchantRawStrStatAmount">6</variable>
-  <variable name="enchantWisStatAmount">1</variable>
-  <variable name="resLuckHit">1</variable>
-  <variable name="enchantStatRequired">7</variable>
+  <variable name="currentSRItarget">none</variable>
+  <variable name="enchantRawStrStatAmount">0</variable>
+  <variable name="enchantWisStatAmount">0</variable>
+  <variable name="resLuckHit">0</variable>
+  <variable name="enchantStatRequired">0</variable>
   <variable name="enchantRawConStatAmount">0</variable>
   <variable name="enchantDHS">sell</variable>
-  <variable name="unEnchantedBag">1631509962</variable>
+  <variable name="unEnchantedBag">bag</variable>
   <variable name="enchantRawDexStatAmount">0</variable>
-  <variable name="enchantLuckStatAmount">2</variable>
+  <variable name="enchantLuckStatAmount">0</variable>
   <variable name="enchantRawIntStatAmount">0</variable>
-  <variable name="enchantStrStatAmount">7</variable>
-  <variable name="EnchantedBag">102391655</variable>
-  <variable name="efSpellActive">on</variable>
-  <variable name="illLuckHit">1</variable>
-  <variable name="enchantItemName">Sharkbait's Infectious Clap</variable>
+  <variable name="enchantStrStatAmount">0</variable>
+  <variable name="EnchantedBag">bag</variable>
+  <variable name="efSpellActive">off</variable>
+  <variable name="illLuckHit">0</variable>
+  <variable name="enchantItemName">none</variable>
   <variable name="efSpellCoolDown">off</variable>
   <variable name="enchantRawWisStatAmount">0</variable>
-  <variable name="enchantRawDamRollStatAmount">10</variable>
-  <variable name="solLuckHit">1</variable>
-  <variable name="enchantDRRequired">6</variable>
-  <variable name="enchantConStatAmount">1</variable>
+  <variable name="enchantRawDamRollStatAmount">0</variable>
+  <variable name="solLuckHit">0</variable>
+  <variable name="enchantDRRequired">0</variable>
+  <variable name="enchantConStatAmount">0</variable>
   <variable name="illHit">0</variable>
   <variable name="solHit">0</variable>
 </variables>
