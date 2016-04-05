@@ -15,7 +15,7 @@
    save_state="y"
    date_written="2016-03-14 22:02:06"
    requires="5.01"
-   version="1.3"
+   version="1.4"
    >
 
 </plugin>
@@ -732,11 +732,11 @@ elseif vItem == '-info' then
       Note("UnEnchanted Bag: " ..GetVariable("unEnchantedBag"))
       Note("***********************************************")
 elseif vItem == '-openclan' then
-      Execute("setOpenStatsRequired " ..GetVariable("enchantOpenClanStats"))
-      Execute("setOpenDamRollRequired " ..GetVariable("enchantOpenClanDR"))
+      Execute("setStatsRequired " ..GetVariable("enchantOpenClanStats"))
+      Execute("setDamRollRequired " ..GetVariable("enchantOpenClanDR"))
 elseif vItem == '-closedclan' then
-      Execute("setClosedStatsRequired " ..GetVariable("enchantClosedClanStats"))
-      Execute("setClosedDamRollRequired " ..GetVariable("enchantClosedClanDR"))
+      Execute("setStatsRequired " ..GetVariable("enchantClosedClanStats"))
+      Execute("setDamRollRequired " ..GetVariable("enchantClosedClanDR"))
 else
       local vEFActive = GetVariable("efSpellActive")
       local vEFCoolDown = GetVariable("efSpellCoolDown")
