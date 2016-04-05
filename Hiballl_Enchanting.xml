@@ -15,7 +15,7 @@
    save_state="y"
    date_written="2016-03-14 22:02:06"
    requires="5.01"
-   version="1.2"
+   version="1.3"
    >
 
 </plugin>
@@ -504,6 +504,30 @@ SetVariable ("enchantDRRequired",NewBag)
 Note ("Minimum DR now set to: " ..NewBag)</send>
   </alias>
   <alias
+   match="^setClosedDamRollRequired( .*){0,1}$"
+   enabled="y"
+   group="Enchanting"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>local NewBag = Trim("%1")
+SetVariable ("enchantClosedClanDR",NewBag)
+Note ("Minimum Closed Clan DR now set to: " ..NewBag)</send>
+  </alias>
+  <alias
+   match="^setOpenDamRollRequired( .*){0,1}$"
+   enabled="y"
+   group="Enchanting"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>local NewBag = Trim("%1")
+SetVariable ("enchantOpenClanDR",NewBag)
+Note ("Minimum Open Clan DR now set to: " ..NewBag)</send>
+  </alias>
+  <alias
    match="^enchantStatReport$"
    enabled="y"
    expand_variables="y"
@@ -580,6 +604,30 @@ SetVariable ("enchantStatRequired",NewBag)
 Note ("Minimum Stats now set to: " ..NewBag)</send>
   </alias>
   <alias
+   match="^setClosedStatsRequired( .*){0,1}$"
+   enabled="y"
+   group="Enchanting"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>local NewBag = Trim("%1")
+SetVariable ("enchantClosedClanStats",NewBag)
+Note ("Minimum Closed Clan Stats now set to: " ..NewBag)</send>
+  </alias>
+  <alias
+   match="^setOpenStatsRequired( .*){0,1}$"
+   enabled="y"
+   group="Enchanting"
+   regexp="y"
+   send_to="12"
+   sequence="100"
+  >
+  <send>local NewBag = Trim("%1")
+SetVariable ("enchantOpenClanStats",NewBag)
+Note ("Minimum Open Clan Stats now set to: " ..NewBag)</send>
+  </alias>
+  <alias
    match="^setunEnchantedBag( .*){0,1}$"
    enabled="y"
    group="Enchanting"
@@ -644,14 +692,26 @@ if vItem == '-help' then
       Note("- Will show this help file.")
       Note("enchant -info")
       Note("- Will show current variables.")
+      Note("enchant -closedclan")
+      Note("- Will set DR and Stats variables based on closed clan variables.")
+      Note("enchant -openclan")
+      Note("- Will set DR and Stats variables based on open clan variables.")
       Note("resetEnchantVariables")
       Note("- Cleanup data holding variables.")
+      Note("setClosedDamRollRequired &lt;number&gt;")
+      Note("- Allows you to set minimum Dam Roll for Closed Clan Gear.")
+      Note("setClosedStatsRequired &lt;number&gt;")
+      Note("- Allows you to set minimum Stats for Closed Clan Gear.")
       Note("setDamRollRequired &lt;number&gt;")
       Note("- Allows you to set minimum Dam Roll.")
       Note("setEnchantedBag &lt;itemname&gt;")
       Note("- Sets which bag good enchants will go into.")
       Note("setEnchantResult &lt;option&gt;")
       Note("- What to do with enchant fails. Drop/Hold/Sell")
+      Note("setOpenDamRollRequired &lt;number&gt;")
+      Note("- Allows you to set minimum Dam Roll for Open Clan Gear.")
+      Note("setOpenStatsRequired &lt;number&gt;")
+      Note("- Allows you to set minimum Stats for Open Clan Gear.")
       Note("setStatsRequired &lt;number&gt;")
       Note("- Allows you to set minimum Stats.")
       Note("setunEnchantedBag &lt;itemname&gt;")
@@ -664,9 +724,19 @@ elseif vItem == '-info' then
       Note("EnchantResult: " ..GetVariable("enchantDHS"))
       Note("Enchant DR: " ..GetVariable("enchantDRRequired"))
       Note("Enchant Stat: " ..GetVariable("enchantStatRequired"))
+      Note("Enchant Closed Clan DR: " ..GetVariable("enchantClosedClanDR"))
+      Note("Enchant Closed Clan Stat: " ..GetVariable("enchantClosedClanStats"))
+      Note("Enchant Open Clan DR: " ..GetVariable("enchantOpenClanDR"))
+      Note("Enchant Open Clan Stat: " ..GetVariable("enchantOpenClanStats"))
       Note("Enchanted Bag: " ..GetVariable("EnchantedBag"))
       Note("UnEnchanted Bag: " ..GetVariable("unEnchantedBag"))
       Note("***********************************************")
+elseif vItem == '-openclan' then
+      Execute("setOpenStatsRequired " ..GetVariable("enchantOpenClanStats"))
+      Execute("setOpenDamRollRequired " ..GetVariable("enchantOpenClanDR"))
+elseif vItem == '-closedclan' then
+      Execute("setClosedStatsRequired " ..GetVariable("enchantClosedClanStats"))
+      Execute("setClosedDamRollRequired " ..GetVariable("enchantClosedClanDR"))
 else
       local vEFActive = GetVariable("efSpellActive")
       local vEFCoolDown = GetVariable("efSpellCoolDown")
@@ -690,6 +760,10 @@ end</send>
 <!--  Variables  -->
 
 <variables>
+  <variable name="enchantClosedClanDR">0</variable>
+  <variable name="enchantClosedClanStats">0</variable>
+  <variable name="enchantOpenClanDR">0</variable>
+  <variable name="enchantOpenClanStats">0</variable>
   <variable name="enchantDexStatAmount">0</variable>
   <variable name="enchantIntStatAmount">0</variable>
   <variable name="enchantRawLuckStatAmount">0</variable>
