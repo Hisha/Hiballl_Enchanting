@@ -758,7 +758,7 @@ else
 end</send>
   </alias>
   <alias
-   match="^buyenchant (?P<itemName>.*) (?P<itemNumber>.*)$"
+   match="^buyenchant (?P&lt;itemName&gt;.*) (?P&lt;itemNumber&gt;.*)$"
    enabled="y"
    expand_variables="y"
    group="Enchanting"
@@ -766,8 +766,8 @@ end</send>
    send_to="12"
    sequence="100"
   >
-  <send>local vItem = Trim("%<itemName>")
-local vItem2 = Trim("%<itemNumber>")
+  <send>local vItem = Trim("%&lt;itemName&gt;")
+local vItem2 = Trim("%&lt;itemNumber&gt;")
 local vEFActive = GetVariable("efSpellActive")
 local vEFCoolDown = GetVariable("efSpellCoolDown")
 
