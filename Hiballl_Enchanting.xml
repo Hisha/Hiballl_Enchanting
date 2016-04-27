@@ -15,7 +15,7 @@
    save_state="y"
    date_written="2016-03-14 22:02:06"
    requires="5.01"
-   version="1.5"
+   version="1.6"
    >
 
 </plugin>
@@ -564,6 +564,7 @@ Note("Total DR: " ..totalDR)
 Note("Total Stats: " ..totalStats)
 
 if totalDR == tonumber(GetVariable("enchantDRRequired")) and totalStats &gt;= tonumber(GetVariable("enchantStatRequired")) then
+       Send("keep " ..GetVariable("currentSRItarget"))
        Send("put " ..GetVariable("currentSRItarget").. " " ..GetVariable("EnchantedBag"))
        Execute("resetEnchantVariables")
 else
